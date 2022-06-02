@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
-import { constants } from "../constants/constants";
-import { GifModel } from "./../models/gif";
+import { constants } from "../../constants/constants";
+import { GifModel } from "../../models/gif";
 
 const { GIPHY_API, GIPHY_KEY } = constants;
 

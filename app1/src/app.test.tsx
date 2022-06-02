@@ -1,26 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { makeApp } from "./factories/app-factorie";
-import { useGetGifRandomResponse } from "./hooks/useGetGifRandom/useGetGifRandom";
+import { useDynamicRequestType } from "./hooks/useDynamicRequest/useDynamicRequest";
 
 type setupProps = {
     loading?: boolean;
-    gifUrl?: string;
+    data?: string;
     retry?: () => void;
 };
 
 const setup = ({
     loading = true,
-    gifUrl = "",
+    data = "",
     retry = jest.fn(),
 }: setupProps) => {
-    const mockUseGetGifRandom = (): useGetGifRandomResponse => ({
+    const mockUseGetGifRandom: useDynamicRequestType = () => ({
         loading,
-        gifUrl,
+        data,
         retry,
     });
 
-    const App = () => makeApp({ useGetGifRandom: mockUseGetGifRandom });
+    const App = () => makeApp({ useDynamicRequest: mockUseGetGifRandom });
 
     return <App />;
 };
@@ -35,7 +35,7 @@ describe("<App />", () => {
     });
 
     test("should be render gif when have  gif url", () => {
-        render(setup({ loading: false, gifUrl: "gifUrl.com" }));
+        render(setup({ loading: false, data: "gifUrl.com" }));
 
         const gif = screen.getByTestId("gif");
 
@@ -45,9 +45,7 @@ describe("<App />", () => {
     test("should be call retry when click in refresh button", () => {
         const mockRetry = jest.fn();
 
-        render(
-            setup({ loading: false, gifUrl: "gifUrl.com", retry: mockRetry })
-        );
+        render(setup({ loading: false, data: "gifUrl.com", retry: mockRetry }));
 
         const resfreshButton = screen.getByRole("button");
 

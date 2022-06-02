@@ -1,10 +1,10 @@
 import App from "../app";
-import { useGetGifRandomResponse } from "../hooks/useGetGifRandom/useGetGifRandom";
+import { useDynamicRequestType } from "../hooks/useDynamicRequest/useDynamicRequest";
 
 type AppFactorieProps = {
-    useGetGifRandom: () => useGetGifRandomResponse;
+    useDynamicRequest: useDynamicRequestType;
 };
 
-export const makeApp = ({ useGetGifRandom }: AppFactorieProps) => (
-    <App useGetGifRandom={useGetGifRandom} />
+export const makeApp = ({ useDynamicRequest }: AppFactorieProps) => (
+    <App useDynamicRequest={useDynamicRequest} />
 );

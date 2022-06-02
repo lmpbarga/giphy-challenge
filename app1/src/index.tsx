@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { makeApp } from "./factories/app-factorie";
-import { useGetGifRandom } from "./hooks/useGetGifRandom/useGetGifRandom";
+import { useDynamicRequest } from "./hooks/useDynamicRequest/useDynamicRequest";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 
@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 
 const App = () =>
     makeApp({
-        useGetGifRandom,
+        useDynamicRequest: useDynamicRequest,
     });
 
 root.render(

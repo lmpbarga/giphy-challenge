@@ -3,16 +3,19 @@ import { Button, Typography } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 import { AppContainer, AppInputContainer } from "./app-styles";
 import { STRINGS } from "./constants/strings";
-import { useGetGifRandomResponse } from "./hooks/useGetGifRandom/useGetGifRandom";
+import { useDynamicRequestType } from "./hooks/useDynamicRequest/useDynamicRequest";
+import { giphyService } from "./services/giphy/giphy";
 
 const { HELLO_GIPHY } = STRINGS;
 
 type AppProps = {
-    useGetGifRandom: () => useGetGifRandomResponse;
+    useDynamicRequest: useDynamicRequestType;
 };
 
-const App = ({ useGetGifRandom }: AppProps) => {
-    const { loading, gifUrl, retry } = useGetGifRandom();
+const App = ({ useDynamicRequest }: AppProps) => {
+    const { loading, data, retry } = useDynamicRequest({
+        request: giphyService.getGifRandom,
+    });
 
     const handleRefreshClick = async () => {
         retry();
@@ -29,9 +32,9 @@ const App = ({ useGetGifRandom }: AppProps) => {
                 </Button>
             </AppInputContainer>
             {loading && <CircularProgress data-testid="loading" />}
-            {gifUrl && (
+            {data && (
                 <img
-                    src={gifUrl}
+                    src={data}
                     alt="loading..."
                     data-testid="gif"
                     style={{ height: 400 }}
