@@ -7,9 +7,7 @@ jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe("useLoginPresenter", () => {
-    it("should call request set data and set loader false", async () => {
-        const mockGifUrl = "gif.com";
-
+    beforeEach(() => {
         mockedAxios.get.mockResolvedValue({
             data: {
                 data: {
@@ -21,6 +19,10 @@ describe("useLoginPresenter", () => {
                 },
             },
         });
+    });
+
+    it("should call request set data and set loader false", async () => {
+        const mockGifUrl = "gif.com";
 
         const mockRequest = jest.fn(() => axios.get("first"));
 
@@ -36,18 +38,6 @@ describe("useLoginPresenter", () => {
     });
 
     it("should call request again when execute retry fuction", async () => {
-        mockedAxios.get.mockResolvedValue({
-            data: {
-                data: {
-                    images: {
-                        original: {
-                            url: "gif.com",
-                        },
-                    },
-                },
-            },
-        });
-
         const mockRequest = jest.fn(() => axios.get("retry"));
 
         const { result, waitForNextUpdate } = renderHook(() =>
