@@ -1,10 +1,9 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 import axios from "axios";
+import { mockedAxios } from "../../jest/axios-mock";
 import { useDynamicRequest } from "./useDynamicRequest";
 
 jest.mock("axios");
-
-const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe("useLoginPresenter", () => {
     beforeEach(() => {

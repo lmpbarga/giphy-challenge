@@ -1,12 +1,8 @@
-import axios from "axios";
+import { mockedAxios } from "../../jest/axios-mock";
 import { giphyService } from "./giphy";
 
-jest.mock("axios");
-
-const mockedAxios = axios as jest.Mocked<typeof axios>;
-
-describe("useLoginPresenter", () => {
-    it("should call request set data and set loader false", async () => {
+describe("gipht service", () => {
+    it("should call gifs random service correctly", async () => {
         mockedAxios.get.mockImplementation((url, config) => {
             return Promise.resolve({ url, config });
         });
