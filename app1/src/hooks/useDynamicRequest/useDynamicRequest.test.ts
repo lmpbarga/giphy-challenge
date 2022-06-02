@@ -5,7 +5,7 @@ import { useDynamicRequest } from "./useDynamicRequest";
 
 jest.mock("axios");
 
-describe("useLoginPresenter", () => {
+describe("useDynamicRequest", () => {
     beforeEach(() => {
         mockedAxios.get.mockResolvedValue({
             data: {

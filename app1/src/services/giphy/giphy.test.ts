@@ -1,7 +1,7 @@
 import { mockedAxios } from "../../jest/axios-mock";
 import { giphyService } from "./giphy";
 
-describe("gipht service", () => {
+describe("giphy service", () => {
     it("should call gifs random service correctly", async () => {
         mockedAxios.get.mockImplementation((url, config) => {
             return Promise.resolve({ url, config });
