@@ -1,0 +1,23 @@
+giphy
+	make account and get KEY
+
+app1
+        giphy api
+        react frontend
+        button refresh the gif
+        input 
+
+app2
+        giphy api
+        node backend
+        react frontend
+        button refresh the gif
+        input
+
+stacks
+	frontend
+		cra --template typescript (react, testing-library, jest, typescript)
+		material ui
+		axios
+	backend
+		?have no idea?
